@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,16 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/hello', function () {
+    return 'こんにちは';
+});
+
+// Route::get('/test', 'TestsController@test');
+
+Route::get('/test', function(){
+    $posts = Post::all();
+    foreach($posts as $post){
+        return $post->title;
+    }
+});
